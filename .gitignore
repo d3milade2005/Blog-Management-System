@@ -1,0 +1,17 @@
+# Ignore environment variables
+.env
+
+# Ignore Python cache and virtual environment
+__pycache__/
+env/
+*.pyc
+*.pyo
+*.pyd
+
+# Ignore database files
+*.db
+alembic/versions/
+
+# Ignore IDE/editor settings
+.vscode/
+.idea/
