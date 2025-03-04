@@ -1,0 +1,19 @@
+fastapi
+uvicorn
+sqlalchemy
+alembic
+
+# for the ai 
+# smolagents
+# smoltools
+# jina
+# litellm
+# requests
+# beautifulsoup4
+# duckduckgo-search
+
+bcrypt
+pyjwt
+python-dotenv
+pytest
+httpx
