@@ -4,8 +4,8 @@ from datetime import datetime, timedelta
 from jose import JWTError, jwt
 from passlib.context import CryptContext #Importing the CryptContext class from the passlib library to hash our password
 from sqlalchemy.orm import Session
-import models, schemas
-from database import get_db
+import src.models as models, src.schemas as schemas
+from src.database import get_db
 from dotenv import load_dotenv
 import os
 

@@ -1,6 +1,6 @@
 from sqlalchemy.orm import Session
 from fastapi import HTTPException, status
-import models, schemas
+import src.models as models, src.schemas as schemas
 
 
 def create_blog(db: Session, blog: schemas.BlogCreate, user_id: int):
