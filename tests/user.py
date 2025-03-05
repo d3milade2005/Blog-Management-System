@@ -50,7 +50,7 @@ def test_register_duplicate_user():
         "email": "test@example.com",  # Same email as previous test
         "password": "testpass"
     })
-    assert response.status_code == 400  # Assuming your API returns 400 for duplicate emails
+    assert response.status_code == 400 # Returns bad request if duplicate email
 
 # Test User Login (Successful)
 def test_login_success():

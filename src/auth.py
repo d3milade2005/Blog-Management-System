@@ -12,9 +12,9 @@ import os
 load_dotenv()
 auth_router = APIRouter()
 
-SECRET_KEY = os.getenv("SECRET_KEY", "fallback-secret-key") #The secret key used for our JWT token
-ALGORITHM = os.getenv("ALGORITHM", "HS256") #The alorithm used for our encryption for the JWT token
-ACCESS_TOKEN_EXPIRE_MINUTES = int(os.getenv("ACCESS_TOKEN_EXPIRE_MINUTES", 30)) #The time in minutes that the token will expire
+SECRET_KEY = os.getenv("SECRET_KEY") #The secret key used for our JWT token
+ALGORITHM = "HS256" #The alorithm used for our encryption for the JWT token
+ACCESS_TOKEN_EXPIRE_MINUTES = 30 #The time in minutes that the token will expire
 
 
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto") #Creating a CryptContext object to hash our password
@@ -35,7 +35,7 @@ def get_user_by_username(db: Session, username: str):
 def get_user_by_email(db: Session, email: str):
     return db.query(models.User).filter(models.User.email == email).first()
 
-def authenticate_user(db, username: str, password: str): #Function to authenticate the user
+def authenticate_user(db: Session, username: str, password: str): #Function to authenticate the user
     user = get_user_by_username(db, username)
     if not user or not verify_password(password, user.hashed_password):
         return False
@@ -75,11 +75,9 @@ def register_user(user: schemas.UserCreate, db: Session = Depends(get_db)):
     
     hashed_password = get_password_hash(user.password)
     db_user = models.User(username=user.username, email=user.email, hashed_password=hashed_password)
-    
     db.add(db_user)
     db.commit()
     db.refresh(db_user)
-    
     return db_user
 
 # User Login & Token Generation
